@@ -33,6 +33,7 @@ class _OnbordingScreenState extends State<OnbordingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       body: Column(
         children: [
           Expanded(
@@ -108,7 +109,7 @@ class _OnbordingScreenState extends State<OnbordingScreen> {
       ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-        color: primaryColor,
+        color: Colors.grey,
       ),
     );
   }
