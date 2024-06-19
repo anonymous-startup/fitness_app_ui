@@ -11,9 +11,6 @@ class MyApp extends StatelessWidget {
     SizeConfig().init(context);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.deepOrange,
-      ),
       home: OnbordingScreen(),
     );
   }

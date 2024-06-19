@@ -1,3 +1,4 @@
+import 'package:fitness_app/constants.dart';
 import 'package:fitness_app/screens/onboarding/models/onboarding_model.dart';
 import 'package:fitness_app/size_config.dart';
 import 'package:flutter/material.dart';
@@ -6,7 +7,10 @@ import 'package:flutter/material.dart';
 // import 'package:unbording/home.dart';
 
 class OnbordingScreen extends StatefulWidget {
+  const OnbordingScreen({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _OnbordingScreenState createState() => _OnbordingScreenState();
 }
 
@@ -47,7 +51,7 @@ class _OnbordingScreenState extends State<OnbordingScreen> {
           ),
           Container(
             height: 60,
-            margin: EdgeInsets.all(40),
+            margin: EdgeInsets.all(getProportionateScreenHeight(40)),
             width: double.infinity,
             child: TextButton(
               onPressed: () {
@@ -63,12 +67,12 @@ class _OnbordingScreenState extends State<OnbordingScreen> {
                 // }
 
                 _controller.nextPage(
-                  duration: Duration(milliseconds: 100),
-                  curve: Curves.bounceIn,
+                  duration: const Duration(milliseconds: 100),
+                  curve: Curves.linear,
                 );
               },
               style: TextButton.styleFrom(
-                backgroundColor: Theme.of(context).primaryColor,
+                backgroundColor: primaryColor,
                 textStyle: const TextStyle(color: Colors.white),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
@@ -104,7 +108,7 @@ class _OnbordingScreenState extends State<OnbordingScreen> {
       ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-        color: Theme.of(context).primaryColor,
+        color: primaryColor,
       ),
     );
   }
