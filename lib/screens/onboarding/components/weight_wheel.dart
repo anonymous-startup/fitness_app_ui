@@ -46,8 +46,10 @@ class _WeightWheelState extends State<WeightWheel> {
             builder: (context, index) {
               return DialTile(
                 isSelected: _selectedIndex == index,
-                weight: index,
-                isKg: widget.isKg,
+                quantity: index,
+                isDefault: widget.isKg,
+                unitOne: "kg",
+                unitTwo: "lb",
               );
             },
           ),

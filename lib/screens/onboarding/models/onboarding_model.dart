@@ -1,6 +1,7 @@
-import 'package:fitness_app/screens/onboarding/chooseplan_screen.dart';
+import 'package:fitness_app/screens/onboarding/choose_plan_screen.dart';
+import 'package:fitness_app/screens/onboarding/weight_screen.dart';
 
-List<dynamic> contents = [
+List<dynamic> contents = const [
     ChoosePlanScreen(),
-    ChoosePlanScreen(),
+    WeightScreen(),
 ];

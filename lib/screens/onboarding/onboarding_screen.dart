@@ -109,7 +109,7 @@ class _OnbordingScreenState extends State<OnbordingScreen> {
       ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-        color: Colors.grey,
+        color: currentIndex == index ? primaryColor:Colors.grey,
       ),
     );
   }
