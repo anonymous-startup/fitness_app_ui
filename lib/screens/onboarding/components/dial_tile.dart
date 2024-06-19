@@ -3,15 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:fitness_app/constants.dart';
 
 class DialTile extends StatelessWidget {
-  int weight;
+  int quantity;
   bool isSelected;
-  bool isKg;
+  bool isDefault;
+  String unitOne;
+  String unitTwo;
+
 
   DialTile({
     super.key,
-    required this.weight,
+    required this.unitOne,
+    required this.unitTwo,
+    required this.quantity,
     required this.isSelected,
-    required this.isKg,
+    required this.isDefault,
   });
 
   @override
@@ -32,7 +37,7 @@ class DialTile extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            weight >= 10 ? weight.toString() : '0$weight',
+            quantity >= 10 ? quantity.toString() : '0$quantity',
             style: TextStyle(
               fontSize: getProportionateScreenHeight(25),
               fontWeight: FontWeight.bold,
@@ -43,7 +48,7 @@ class DialTile extends StatelessWidget {
             Container(
               margin: const EdgeInsets.only(left: 10),
               child: Text(
-                isKg ? 'kg' : 'lbs',
+                isDefault ?  unitOne : unitTwo,
                 style: const TextStyle(
                   color: primaryColor,
                   fontWeight: FontWeight.bold,

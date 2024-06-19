@@ -7,7 +7,10 @@ import 'package:flutter/material.dart';
 // import 'package:unbording/home.dart';
 
 class OnbordingScreen extends StatefulWidget {
+  const OnbordingScreen({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _OnbordingScreenState createState() => _OnbordingScreenState();
 }
 
@@ -49,7 +52,7 @@ class _OnbordingScreenState extends State<OnbordingScreen> {
           ),
           Container(
             height: 60,
-            margin: const EdgeInsets.all(40),
+            margin: EdgeInsets.all(getProportionateScreenHeight(40)),
             width: double.infinity,
             child: TextButton(
               onPressed: () {
@@ -66,7 +69,7 @@ class _OnbordingScreenState extends State<OnbordingScreen> {
 
                 _controller.nextPage(
                   duration: const Duration(milliseconds: 100),
-                  curve: Curves.bounceIn,
+                  curve: Curves.linear,
                 );
               },
               style: TextButton.styleFrom(
@@ -106,7 +109,7 @@ class _OnbordingScreenState extends State<OnbordingScreen> {
       ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-        color: Colors.grey,
+        color: currentIndex == index ? primaryColor:Colors.grey,
       ),
     );
   }
