@@ -3,14 +3,14 @@ import 'package:fitness_app/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:fitness_app/screens/onboarding/components/weight_wheel.dart';
 
-class WeightScreen extends StatefulWidget {
-  const WeightScreen({super.key});
+class TargetWeightScreen extends StatefulWidget {
+  const TargetWeightScreen({super.key});
 
   @override
-  State<WeightScreen> createState() => _WeightScreenState();
+  State<TargetWeightScreen> createState() => _TargetWeightScreenState();
 }
 
-class _WeightScreenState extends State<WeightScreen> {
+class _TargetWeightScreenState extends State<TargetWeightScreen> {
   final List<bool> _toggleSelected = [false, true];
   late bool isKg = _toggleSelected[1];
 
@@ -22,7 +22,8 @@ class _WeightScreenState extends State<WeightScreen> {
         children: [
           const Center(
             child: Text(
-              'Whats your Body Weight?',
+              'Whats your target Body Weight?',
+              textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 25,
                 fontWeight: FontWeight.w500,
@@ -34,7 +35,7 @@ class _WeightScreenState extends State<WeightScreen> {
           ),
           Center(
             child: Image.asset(
-              'assets/images/onboarding/weight.png',
+              'assets/images/onboarding/target_weight.png',
               width: getProportionateScreenWidth(253),
               height: getProportionateScreenHeight(171),
             ),
@@ -80,7 +81,6 @@ class _WeightScreenState extends State<WeightScreen> {
               ),
             ],
           )
-       
         ],
       ),
     );
