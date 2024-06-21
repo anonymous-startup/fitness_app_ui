@@ -1,10 +1,11 @@
-import 'package:fitness_app/screens/onboarding/components/dial_tile.dart';
+import 'package:fitness_app/screens/onboarding/components/weight_tile.dart';
 import 'package:fitness_app/size_config.dart';
 import 'package:flutter/material.dart';
 
 class WeightWheel extends StatefulWidget {
-  bool isKg;
-  WeightWheel({
+  final bool isKg;
+
+  const WeightWheel({
     super.key,
     required this.isKg,
   });
@@ -44,12 +45,12 @@ class _WeightWheelState extends State<WeightWheel> {
           childDelegate: ListWheelChildBuilderDelegate(
             childCount: widget.isKg ? 150 : 200,
             builder: (context, index) {
-              return DialTile(
+              return WeightTile(
                 isSelected: _selectedIndex == index,
                 quantity: index,
                 isDefault: widget.isKg,
                 unitOne: "kg",
-                unitTwo: "lb",
+                unitTwo: "lbs",
               );
             },
           ),
