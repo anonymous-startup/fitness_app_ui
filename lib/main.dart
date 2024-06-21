@@ -12,6 +12,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.deepOrange,
+        primaryColor: Colors.white,
         fontFamily: 'Poppins',
       ),
       home: OnbordingScreen(),

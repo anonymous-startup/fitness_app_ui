@@ -3,20 +3,20 @@ import 'package:fitness_app/screens/onboarding/components/plan_choice_button.dar
 import 'package:fitness_app/size_config.dart';
 import 'package:flutter/material.dart';
 
-class ChoosePlanScreen extends StatefulWidget {
-  const ChoosePlanScreen({super.key});
+class PushupsChoiceScreen extends StatefulWidget {
+  const PushupsChoiceScreen({super.key});
 
   @override
-  State<ChoosePlanScreen> createState() => _ChoosePlanScreenState();
+  State<PushupsChoiceScreen> createState() => _PushupsChoiceScreenState();
 }
 
-class _ChoosePlanScreenState extends State<ChoosePlanScreen> {
+class _PushupsChoiceScreenState extends State<PushupsChoiceScreen> {
   int selectedIndex = -1;
 
   final List<dynamic> choices = [
-    {"title": "Beginner", "description": "let’s start the journey"},
-    {"title": "Intermediate", "description": "Take it to the next level"},
-    {"title": "Advanced", "description": "Unleash your full potential"},
+    {"title": "I can't do it 😔", "description": ""},
+    {"title": "0-5 repeats", "description": ""},
+    {"title": "5-10 repeats", "description": ""},
   ];
 
   void selectItem(int index) {
@@ -32,10 +32,16 @@ class _ChoosePlanScreenState extends State<ChoosePlanScreen> {
         children: [
           //Title
           Container(
-            margin: EdgeInsets.only(top: getProportionateScreenHeight(50)),
+            margin: EdgeInsets.only(
+              top: getProportionateScreenHeight(50),
+              left: getProportionateScreenWidth(30),
+              right: getProportionateScreenWidth(30),
+            ),
             child: Center(
               child: Text(
-                "Choose your plan",
+                softWrap: true,
+                textAlign: TextAlign.center,
+                "How many pushups can you do?",
                 style: TextStyle(
                   fontSize: getProportionateScreenHeight(25),
                   fontWeight: FontWeight.w500,
@@ -46,7 +52,9 @@ class _ChoosePlanScreenState extends State<ChoosePlanScreen> {
 
           //selection buttons
           Container(
-            margin: EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(36),vertical: getProportionateScreenHeight(26)),
+            margin: EdgeInsets.symmetric(
+                horizontal: getProportionateScreenWidth(27),
+                vertical: getProportionateScreenHeight(26)),
             height: getProportionateScreenHeight(400),
             child: ListView.builder(
               itemCount: choices.length,
@@ -54,7 +62,7 @@ class _ChoosePlanScreenState extends State<ChoosePlanScreen> {
                 return GestureDetector(
                   onTap: () => selectItem(index),
                   child: PlanChoiceButton(
-                    imagePath: 'assets/images/onboarding/choice_button_image.png',
+                    imagePath: '',
                     color: selectedIndex == index ? primaryColor : Colors.grey,
                     title: choices[index]['title'],
                     description: choices[index]['description'],
