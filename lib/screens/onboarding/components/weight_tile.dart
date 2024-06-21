@@ -2,15 +2,14 @@ import 'package:fitness_app/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:fitness_app/constants.dart';
 
-class DialTile extends StatelessWidget {
-  int quantity;
-  bool isSelected;
-  bool isDefault;
-  String unitOne;
-  String unitTwo;
+class WeightTile extends StatelessWidget {
+  final int quantity;
+  final bool isSelected;
+  final bool isDefault;
+  final String unitOne;
+  final String unitTwo;
 
-
-  DialTile({
+  const WeightTile({
     super.key,
     required this.unitOne,
     required this.unitTwo,
@@ -39,7 +38,9 @@ class DialTile extends StatelessWidget {
           Text(
             quantity >= 10 ? quantity.toString() : '0$quantity',
             style: TextStyle(
-              fontSize: getProportionateScreenHeight(25),
+              fontSize: isSelected
+                  ? getProportionateScreenHeight(25)
+                  : getProportionateScreenHeight(20),
               fontWeight: FontWeight.bold,
               color: isSelected ? primaryColor : Colors.grey,
             ),
@@ -48,7 +49,7 @@ class DialTile extends StatelessWidget {
             Container(
               margin: const EdgeInsets.only(left: 10),
               child: Text(
-                isDefault ?  unitOne : unitTwo,
+                isDefault ? unitOne : unitTwo,
                 style: const TextStyle(
                   color: primaryColor,
                   fontWeight: FontWeight.bold,

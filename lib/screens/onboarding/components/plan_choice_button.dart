@@ -27,7 +27,9 @@ class PlanChoiceButton extends StatelessWidget {
           width: color == primaryColor ? 2.4 : 0.9,
         ),
       ),
-      margin: EdgeInsets.symmetric(vertical: getProportionateScreenHeight(14)),
+      margin: EdgeInsets.symmetric(
+        vertical: getProportionateScreenHeight(14),
+      ),
       child: Row(
         mainAxisAlignment: (imagePath.isNotEmpty)
             ? MainAxisAlignment.spaceEvenly
