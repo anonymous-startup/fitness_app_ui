@@ -1,5 +1,4 @@
 import 'package:fitness_app/constants.dart';
-import 'package:fitness_app/screens/onboarding/components/plan_choice_button.dart';
 import 'package:fitness_app/screens/onboarding/components/selection_drop_down.dart';
 import 'package:fitness_app/size_config.dart';
 import 'package:flutter/material.dart';
@@ -15,9 +14,18 @@ class _InjurySelectionScreenState extends State<InjurySelectionScreen> {
   int selectedIndex = -1;
 
   final List<dynamic> choices = [
-    {"title": "Beginner", "description": "less than a minute"},
-    {"title": "Intermediate", "description": "less than 2 minutes"},
-    {"title": "Advanced", "description": "more than 2 minutes"},
+    {
+      "title": "Muscle Damage",
+      "choices": ["Brain Damage", "Muscle Damage"]
+    },
+    {
+      "title": "Muscle Damage",
+      "choices": ["Brain Damage", "Muscle Damage"]
+    },
+    {
+      "title": "Muscle Damage",
+      "choices": ["Brain Damage", "Muscle Damage"]
+    },
   ];
 
   void selectItem(int index) {
@@ -25,7 +33,6 @@ class _InjurySelectionScreenState extends State<InjurySelectionScreen> {
       selectedIndex = index;
     });
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -58,13 +65,16 @@ class _InjurySelectionScreenState extends State<InjurySelectionScreen> {
             margin: EdgeInsets.symmetric(
                 horizontal: getProportionateScreenWidth(27),
                 vertical: getProportionateScreenHeight(26)),
-            height: getProportionateScreenHeight(400),
+            height: getProportionateScreenHeight(500),
             child: ListView.builder(
               itemCount: choices.length,
               itemBuilder: (context, index) {
                 return GestureDetector(
                   onTap: () => selectItem(index),
-                  child: SelectionDropDown(title: "Muscle Pain",),
+                  child: SelectionDropDown(
+                    title: choices[index]["title"],
+                    injuries: choices[index]["choices"],
+                  ),
                 );
               },
             ),
