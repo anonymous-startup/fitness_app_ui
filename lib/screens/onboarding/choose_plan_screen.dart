@@ -46,7 +46,10 @@ class _ChoosePlanScreenState extends State<ChoosePlanScreen> {
 
           //selection buttons
           Container(
-            margin: EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(36),vertical: getProportionateScreenHeight(26)),
+            margin: EdgeInsets.symmetric(
+              horizontal: getProportionateScreenWidth(36),
+              vertical: getProportionateScreenHeight(26),
+            ),
             height: getProportionateScreenHeight(400),
             child: ListView.builder(
               itemCount: choices.length,
@@ -54,7 +57,8 @@ class _ChoosePlanScreenState extends State<ChoosePlanScreen> {
                 return GestureDetector(
                   onTap: () => selectItem(index),
                   child: PlanChoiceButton(
-                    imagePath: 'assets/images/onboarding/choice_button_image.png',
+                    imagePath:
+                        'assets/images/onboarding/choice_button_image.png',
                     color: selectedIndex == index ? primaryColor : Colors.grey,
                     title: choices[index]['title'],
                     description: choices[index]['description'],

@@ -2,27 +2,59 @@ import 'package:fitness_app/constants.dart';
 import 'package:fitness_app/screens/onboarding/components/plan_choice_button.dart';
 import 'package:fitness_app/size_config.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 
-class PlankInputScreen extends StatefulWidget {
-  const PlankInputScreen({super.key});
+class LocationScreen extends StatefulWidget {
+  const LocationScreen({super.key});
 
   @override
-  State<PlankInputScreen> createState() => _PlankInputScreenState();
+  State<LocationScreen> createState() => _LocationScreenState();
 }
 
-class _PlankInputScreenState extends State<PlankInputScreen> {
+class _LocationScreenState extends State<LocationScreen> {
   int selectedIndex = -1;
+  Position? _position;
 
   final List<dynamic> choices = [
-    {"title": "Beginner", "description": "less than a minute"},
-    {"title": "Intermediate", "description": "less than 2 minutes"},
-    {"title": "Advanced", "description": "more than 2 minutes"},
+    {"title": "Yours Device Location", "description": ""},
+    {"title": "Ask me Later", "description": ""},
   ];
 
-  void selectItem(int index) {
+  void selectItem(int index) async {
     setState(() {
       selectedIndex = index;
     });
+
+    if (selectedIndex == 0) {
+      _position = await _determinePosition();
+      print(_position?.latitude);
+      print(_position?.longitude);
+    }
+  }
+
+  Future<Position> _determinePosition() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      return Future.error('Location services are disabled.');
+    }
+
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        return Future.error('Location permissions are denied');
+      }
+    }
+
+    if (permission == LocationPermission.deniedForever) {
+      return Future.error(
+          'Location permissions are permanently denied, we cannot request permissions.');
+    }
+
+    return await Geolocator.getCurrentPosition();
   }
 
   @override
@@ -40,7 +72,7 @@ class _PlankInputScreenState extends State<PlankInputScreen> {
             child: Center(
               child: Text(
                 softWrap: true,
-                "How long can you hold plank ?",
+                "Your Location?",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: getProportionateScreenHeight(25),
@@ -58,7 +90,7 @@ class _PlankInputScreenState extends State<PlankInputScreen> {
               top: getProportionateScreenHeight(10),
             ),
             child: Image.asset(
-              'assets/images/onboarding/plank_image.png',
+              'assets/images/onboarding/location.png',
               width: getProportionateScreenWidth(250),
             ),
           ),
