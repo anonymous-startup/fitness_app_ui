@@ -30,59 +30,62 @@ class _SelectionDropDownState extends State<SelectionDropDown> {
       margin: EdgeInsets.symmetric(
         vertical: getProportionateScreenHeight(14),
       ),
-      child: ExpansionTile(
-        title: Row(children: [
-          Image.asset(
-            'assets/images/onboarding/muscle_pain.png',
-            width: getProportionateScreenWidth(37),
-          ),
-          SizedBox(
-            width: getProportionateScreenWidth(20),
-          ),
-          Text(
-            widget.title,
-            style: const TextStyle(
-              fontWeight: FontWeight.bold,
+      child: Theme(
+        data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
+        child: ExpansionTile(
+          title: Row(children: [
+            Image.asset(
+              'assets/images/onboarding/muscle_pain.png',
+              width: getProportionateScreenWidth(37),
             ),
-          ),
-        ]),
-        controller: controller,
-        children: List.generate(items.length, (index) {
-          return InkWell(
-            onTap: () {
-              setState(() {
-                if (selectedItems.contains(index)) {
-                  selectedItems.remove(index);
-                } else {
-                  selectedItems.add(index);
-                }
-              });
-            },
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Row(
-                children: [
-                  Container(
-                    width: 24.0,
-                    height: 24.0,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: selectedItems.contains(index)
-                          ? primaryColor
-                          : const Color.fromARGB(255, 145, 146, 147),
-                    ),
-                  ),
-                  SizedBox(width: 16.0),
-                  Expanded(
-                    child: ListTile(
-                      title: Text(items[index]),
-                    ),
-                  ),
-                ],
+            SizedBox(
+              width: getProportionateScreenWidth(20),
+            ),
+            Text(
+              widget.title,
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
               ),
             ),
-          );
-        }),
+          ]),
+          controller: controller,
+          children: List.generate(items.length, (index) {
+            return InkWell(
+              onTap: () {
+                setState(() {
+                  if (selectedItems.contains(index)) {
+                    selectedItems.remove(index);
+                  } else {
+                    selectedItems.add(index);
+                  }
+                });
+              },
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Row(
+                  children: [
+                    Container(
+                      width: 24.0,
+                      height: 24.0,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: selectedItems.contains(index)
+                            ? primaryColor
+                            : const Color.fromARGB(255, 145, 146, 147),
+                      ),
+                    ),
+                    SizedBox(width: 16.0),
+                    Expanded(
+                      child: ListTile(
+                        title: Text(items[index]),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          }),
+        ),
       ),
     );
   }
