@@ -20,11 +20,11 @@ class _WeightScreenState extends State<WeightScreen> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Center(
+          Center(
             child: Text(
               'Whats your Body Weight?',
               style: TextStyle(
-                fontSize: 25,
+                fontSize: getProportionateScreenHeight(25),
                 fontWeight: FontWeight.w500,
               ),
             ),

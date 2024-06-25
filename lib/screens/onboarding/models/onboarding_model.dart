@@ -10,7 +10,7 @@ import 'package:fitness_app/screens/onboarding/target_weight_screeen.dart';
 import 'package:fitness_app/screens/onboarding/weight_screen.dart';
 
 List<dynamic> contents = const [
-  LocationScreen(),
+  
   HeightScreen(),
   InjurySelectionScreen(),
   ChooseBirthdayScreen(),
@@ -20,4 +20,5 @@ List<dynamic> contents = const [
   PlankInputScreen(),
   WeightScreen(),
   TargetWeightScreen(),
+  LocationScreen(),
 ];

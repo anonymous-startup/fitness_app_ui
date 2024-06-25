@@ -1,5 +1,9 @@
 {
     "java.jdt.ls.vmargs": "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx2G -Xms100m -Xlog:disable",
+<<<<<<< HEAD
+    "java.configuration.updateBuildConfiguration": "interactive"
+=======
     "cmake.sourceDirectory": "/Users/vijay/Documents/AnonymousStartup/fitness_app/linux",
     "java.configuration.updateBuildConfiguration": "automatic"
+>>>>>>> 3bfa848ab09755f5c56f6336ef8704c8f3480576
 }
