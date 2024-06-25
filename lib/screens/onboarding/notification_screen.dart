@@ -1,4 +1,3 @@
-import 'package:fitness_app/screens/onboarding/components/plan_choice_button.dart';
 import 'package:fitness_app/screens/onboarding/components/reminder_wheel.dart';
 import 'package:fitness_app/size_config.dart';
 import 'package:flutter/material.dart';
