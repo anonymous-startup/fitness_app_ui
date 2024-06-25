@@ -27,8 +27,6 @@ class _LocationScreenState extends State<LocationScreen> {
 
     if (selectedIndex == 0) {
       _position = await _determinePosition();
-      print(_position?.latitude);
-      print(_position?.longitude);
     }
   }
 
