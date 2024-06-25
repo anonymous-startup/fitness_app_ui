@@ -10,7 +10,6 @@ import 'package:fitness_app/screens/onboarding/target_weight_screeen.dart';
 import 'package:fitness_app/screens/onboarding/weight_screen.dart';
 
 List<dynamic> contents = const [
-    // HeightCalculator(),
     HeightScreen(),
     InjurySelectionScreen(),
     ChooseBirthdayScreen(),
