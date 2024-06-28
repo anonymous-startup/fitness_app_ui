@@ -1,14 +1,18 @@
 import 'package:fitness_app/constants.dart';
+import 'package:fitness_app/screens/home/home_page.dart';
+import 'package:fitness_app/screens/onboarding/models/onboarding_data_model.dart';
 import 'package:fitness_app/screens/onboarding/models/onboarding_model.dart';
 import 'package:fitness_app/size_config.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 // import 'package:flutter_svg/flutter_svg.dart';
 // import 'package:unbording/content_model.dart';
 // import 'package:unbording/home.dart';
 
 class OnbordingScreen extends StatefulWidget {
   const OnbordingScreen({super.key});
-
+  static String routeName = "onboarding_screen";
   @override
   // ignore: library_private_types_in_public_api
   _OnbordingScreenState createState() => _OnbordingScreenState();
@@ -17,6 +21,9 @@ class OnbordingScreen extends StatefulWidget {
 class _OnbordingScreenState extends State<OnbordingScreen> {
   int currentIndex = 0;
   late PageController _controller;
+  late final SharedPreferences prefs;
+
+  FToast ftoast = FToast();
 
   @override
   void initState() {
@@ -34,7 +41,9 @@ class _OnbordingScreenState extends State<OnbordingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(backgroundColor: Colors.white,),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+      ),
       body: Column(
         children: [
           Expanded(
@@ -47,7 +56,7 @@ class _OnbordingScreenState extends State<OnbordingScreen> {
                 });
               },
               itemBuilder: (_, i) {
-                return contents[i];
+                return contents[i][0];
               },
             ),
           ),
@@ -56,22 +65,36 @@ class _OnbordingScreenState extends State<OnbordingScreen> {
             margin: EdgeInsets.all(getProportionateScreenHeight(40)),
             width: double.infinity,
             child: TextButton(
-              onPressed: () {
+              onPressed: () async {
                 // ---------Last page logic------------
 
-                // if (currentIndex == contents.length - 1) {
-                //   Navigator.pushReplacement(
-                //     context,
-                //     MaterialPageRoute(
-                //       builder: (_) => Home(),
-                //     ),
-                //   );
-                // }
+                if (currentIndex == contents.length - 1)  {
+                    prefs = await SharedPreferences.getInstance();
+                    prefs.setBool('hasSeen', true);
+                    
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => const HomePage(),
+                    ),
+                  );
+                }
 
-                _controller.nextPage(
-                  duration: const Duration(milliseconds: 100),
-                  curve: Curves.linear,
-                );
+                if (!contents[currentIndex][1]()) {
+                  Fluttertoast.showToast(
+                      msg: "provide input",
+                      gravity: ToastGravity.TOP,
+                      timeInSecForIosWeb: 1,
+                      backgroundColor: Colors.grey,
+                      textColor: const Color.fromARGB(255, 33, 33, 33),
+                      fontSize: 12.0,
+                    );
+                } else {
+                  _controller.nextPage(
+                    duration: const Duration(milliseconds: 100),
+                    curve: Curves.linear,
+                  );
+                }
               },
               style: TextButton.styleFrom(
                 backgroundColor: primaryColor,
@@ -110,7 +133,7 @@ class _OnbordingScreenState extends State<OnbordingScreen> {
       ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-        color: currentIndex == index ? primaryColor:Colors.grey,
+        color: currentIndex == index ? primaryColor : Colors.grey,
       ),
     );
   }

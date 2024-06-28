@@ -43,7 +43,7 @@ class _TargetWeightScreenState extends State<TargetWeightScreen> {
           SizedBox(
             height: getProportionateScreenHeight(20),
           ),
-          WeightWheel(isKg: isKg),
+          WeightWheel(isKg: isKg,isTarget: true,),
           SizedBox(
             height: getProportionateScreenHeight(20),
           ),

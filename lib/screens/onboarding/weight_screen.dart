@@ -42,7 +42,7 @@ class _WeightScreenState extends State<WeightScreen> {
           SizedBox(
             height: getProportionateScreenHeight(20),
           ),
-          WeightWheel(isKg: isKg),
+          WeightWheel(isKg: isKg,),
           SizedBox(
             height: getProportionateScreenHeight(20),
           ),

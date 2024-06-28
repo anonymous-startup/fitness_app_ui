@@ -1,12 +1,15 @@
 import 'package:fitness_app/screens/onboarding/components/weight_tile.dart';
+import 'package:fitness_app/screens/onboarding/models/onboarding_data_model.dart';
 import 'package:fitness_app/size_config.dart';
 import 'package:flutter/material.dart';
 
 class WeightWheel extends StatefulWidget {
   final bool isKg;
+  bool isTarget;
 
-  const WeightWheel({
+  WeightWheel({
     super.key,
+    this.isTarget = false,
     required this.isKg,
   });
 
@@ -25,6 +28,14 @@ class _WeightWheelState extends State<WeightWheel> {
     _controller = FixedExtentScrollController(initialItem: _selectedIndex);
     _controller.addListener(() {
       setState(() {
+          if(widget.isTarget) {
+            OnboardingDataModel.targetWeight = _controller.selectedItem;
+            OnboardingDataModel.isTargetKg = widget.isKg;
+          }else {
+            OnboardingDataModel.currentWeight = _controller.selectedItem;
+            OnboardingDataModel.isCurrKg = widget.isKg;
+          }
+          
         _selectedIndex = _controller.selectedItem;
       });
     });

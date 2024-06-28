@@ -1,5 +1,6 @@
 import 'package:fitness_app/constants.dart';
 import 'package:fitness_app/screens/onboarding/components/plan_choice_button.dart';
+import 'package:fitness_app/screens/onboarding/models/onboarding_data_model.dart';
 import 'package:fitness_app/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
@@ -27,6 +28,8 @@ class _LocationScreenState extends State<LocationScreen> {
 
     if (selectedIndex == 0) {
       _position = await _determinePosition();
+      OnboardingDataModel.latitude = _position!.latitude;
+      OnboardingDataModel.longitude = _position!.longitude;
     }
   }
 

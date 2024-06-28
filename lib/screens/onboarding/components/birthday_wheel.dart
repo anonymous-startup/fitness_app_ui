@@ -1,5 +1,6 @@
 import 'package:fitness_app/providers/onboarding/birthday_provider.dart';
 import 'package:fitness_app/screens/onboarding/components/birthday_tile.dart';
+import 'package:fitness_app/screens/onboarding/models/onboarding_data_model.dart';
 import 'package:fitness_app/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -63,6 +64,7 @@ class _BirthdayWheelState extends State<BirthdayWheel> {
         _daysInMonth = isLeapYear(years[_year])
             ? (_month == 1 ? 29 : int.parse(monthDaysList[_month][1]))
             : int.parse(monthDaysList[_month][1]);
+        OnboardingDataModel.birthMonth = _month;
         _dayController.jumpToItem(0);
       });
     });
@@ -71,6 +73,7 @@ class _BirthdayWheelState extends State<BirthdayWheel> {
     _dayController.addListener(() {
       setState(() {
         _day = _dayController.selectedItem % _daysInMonth;
+        OnboardingDataModel.birthDay = _day;
       });
     });
 
@@ -78,6 +81,7 @@ class _BirthdayWheelState extends State<BirthdayWheel> {
     _yearController.addListener(() {
       setState(() {
         _year = _yearController.selectedItem % 100;
+        OnboardingDataModel.birthYear = _year;
         _dayController.jumpToItem(0);
       });
     });

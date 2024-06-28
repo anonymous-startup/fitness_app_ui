@@ -1,5 +1,6 @@
 import 'package:fitness_app/constants.dart';
 import 'package:fitness_app/screens/onboarding/components/plan_choice_button.dart';
+import 'package:fitness_app/screens/onboarding/models/onboarding_data_model.dart';
 import 'package:fitness_app/size_config.dart';
 import 'package:flutter/material.dart';
 
@@ -21,6 +22,7 @@ class _PlankInputScreenState extends State<PlankInputScreen> {
 
   void selectItem(int index) {
     setState(() {
+      OnboardingDataModel.planChoice = index;
       selectedIndex = index;
     });
   }
