@@ -1,4 +1,5 @@
 import 'package:fitness_app/constants.dart';
+import 'package:fitness_app/screens/onboarding/models/onboarding_data_model.dart';
 import 'package:fitness_app/size_config.dart';
 import 'package:flutter/material.dart';
 
@@ -55,8 +56,10 @@ class _SelectionDropDownState extends State<SelectionDropDown> {
                 setState(() {
                   if (selectedItems.contains(index)) {
                     selectedItems.remove(index);
+                    OnboardingDataModel.injuries.remove(items[index]);
                   } else {
                     selectedItems.add(index);
+                    OnboardingDataModel.injuries.add(items[index]);
                   }
                 });
               },

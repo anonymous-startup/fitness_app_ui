@@ -1,4 +1,5 @@
 import 'package:fitness_app/constants.dart';
+import 'package:fitness_app/screens/onboarding/models/onboarding_data_model.dart';
 import 'package:fitness_app/size_config.dart';
 import 'package:flutter/material.dart';
 
@@ -32,6 +33,7 @@ class _HeightScreenState extends State<HeightScreen> {
   @override
   void initState() {
     super.initState();
+    OnboardingDataModel.height = _height;
     // WidgetsBinding.instance.addPostFrameCallback((_) {
     //   _scrollController.jumpTo((_height) * 20);
     // });
@@ -76,6 +78,8 @@ class _HeightScreenState extends State<HeightScreen> {
 
     setState(() {
       _height = isCm ? (250.0 - closestIndex) : (80.0 - closestIndex);
+      OnboardingDataModel.height = _height;
+      OnboardingDataModel.isCm = isCm;
     });
   }
 

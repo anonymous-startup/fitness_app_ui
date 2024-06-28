@@ -1,13 +1,28 @@
 import 'package:fitness_app/constants.dart';
 import 'package:fitness_app/providers/onboarding/birthday_provider.dart';
+import 'package:fitness_app/screens/diet/diet_input_screen.dart';
 import 'package:fitness_app/screens/onboarding/onboarding_screen.dart';
 import 'package:fitness_app/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() => runApp(MyApp());
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  final SharedPreferences prefs = await SharedPreferences.getInstance();
+  bool hasSeen = prefs.getBool('hasSeen') ?? false;
+
+  runApp(
+    MyApp(hasSeen: hasSeen),
+  );
+}
 
 class MyApp extends StatelessWidget {
+  final bool hasSeen;
+
+  MyApp({required this.hasSeen});
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -23,7 +38,11 @@ class MyApp extends StatelessWidget {
           primaryColor: primaryColor,
           fontFamily: 'Poppins',
         ),
-        home: const OnbordingScreen(),
+        home: hasSeen ? const DietInputScreen() : const OnbordingScreen(),
+        routes: {
+          DietInputScreen.routeName: (ctx) => const DietInputScreen(),
+          OnbordingScreen.routeName: (ctx) => const OnbordingScreen(),
+        },
       ),
     );
   }
