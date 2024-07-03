@@ -66,29 +66,31 @@ class _OnbordingScreenState extends State<OnbordingScreen> {
             width: double.infinity,
             child: TextButton(
               onPressed: () async {
-                // ---------Last page logic------------
-
-                if (currentIndex == contents.length - 1)  {
-                    prefs = await SharedPreferences.getInstance();
-                    prefs.setBool('hasSeen', true);
-                    
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => const HomePage(),
-                    ),
-                  );
-                }
-
                 if (!contents[currentIndex][1]()) {
                   Fluttertoast.showToast(
-                      msg: "provide input",
-                      gravity: ToastGravity.TOP,
-                      timeInSecForIosWeb: 1,
-                      backgroundColor: Colors.grey,
-                      textColor: const Color.fromARGB(255, 33, 33, 33),
-                      fontSize: 12.0,
-                    );
+                    msg: "provide input",
+                    gravity: ToastGravity.TOP,
+                    timeInSecForIosWeb: 1,
+                    backgroundColor: Colors.grey,
+                    textColor: const Color.fromARGB(255, 33, 33, 33),
+                    fontSize: 12.0,
+                  );
+                  return;
+                }
+
+                if (currentIndex == contents.length - 1) {
+                  prefs = await SharedPreferences.getInstance();
+                  prefs.setBool('hasSeen', true);
+
+                  // If something is not working, kindly remove this line 
+                  if (!context.mounted) return;
+
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => const HomePage(),
+                    ),
+                  );
                 } else {
                   _controller.nextPage(
                     duration: const Duration(milliseconds: 100),

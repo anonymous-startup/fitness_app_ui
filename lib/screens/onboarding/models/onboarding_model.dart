@@ -1,3 +1,4 @@
+import 'package:fitness_app/screens/nutrition/chat_with_gemini.dart';
 import 'package:fitness_app/screens/onboarding/choose_birthday_screen.dart';
 import 'package:fitness_app/screens/onboarding/choose_plan_screen.dart';
 import 'package:fitness_app/screens/onboarding/height_screen.dart';
@@ -23,7 +24,7 @@ bool pushupValidator() {
 }
 
 bool plankValidator() {
-  return OnboardingDataModel.planChoice != -1;
+  return OnboardingDataModel.plankChoice != -1;
 }
 
 bool weightValidator() {
@@ -39,15 +40,15 @@ bool heightValidator() {
 }
 
 bool birthDateValidator() {
-  return DateTime.now().year - OnboardingDataModel.birthYear > 5;
+  return (DateTime.now().year - OnboardingDataModel.birthYear) > 5;
 }
 
 bool injuryValidator() {
   return true;
 }
 
-bool locaationValidator() {
-  return true;
+bool locationValidator() {
+  return OnboardingDataModel.locationChoice != -1;
 }
 
 List<dynamic> contents = const [
@@ -58,8 +59,7 @@ List<dynamic> contents = const [
   [WeightScreen(), weightValidator],
   [HeightScreen(), heightValidator],
   [TargetWeightScreen(), targetWeightValidator],
-  [ChooseBirthdayScreen(), notifyTimeValidator],
+  [ChooseBirthdayScreen(), birthDateValidator],
   [InjurySelectionScreen(), notifyTimeValidator],
-  [LocationScreen(), notifyTimeValidator],
+  [LocationScreen(), locationValidator],
 ];
-
