@@ -81,7 +81,7 @@ class _BirthdayWheelState extends State<BirthdayWheel> {
     _yearController.addListener(() {
       setState(() {
         _year = _yearController.selectedItem % 100;
-        OnboardingDataModel.birthYear = _year;
+        OnboardingDataModel.birthYear = years[_year];
         _dayController.jumpToItem(0);
       });
     });

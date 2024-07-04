@@ -24,6 +24,7 @@ class _LocationScreenState extends State<LocationScreen> {
   void selectItem(int index) async {
     setState(() {
       selectedIndex = index;
+      OnboardingDataModel.locationChoice = selectedIndex;
     });
 
     if (selectedIndex == 0) {
