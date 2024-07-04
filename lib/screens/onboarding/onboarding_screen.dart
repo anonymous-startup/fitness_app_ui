@@ -1,6 +1,5 @@
 import 'package:fitness_app/constants.dart';
 import 'package:fitness_app/screens/home/home_page.dart';
-import 'package:fitness_app/screens/onboarding/models/onboarding_data_model.dart';
 import 'package:fitness_app/screens/onboarding/models/onboarding_model.dart';
 import 'package:fitness_app/size_config.dart';
 import 'package:flutter/material.dart';
@@ -42,12 +41,26 @@ class _OnbordingScreenState extends State<OnbordingScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        leading: currentIndex == 0
+            ? Container()
+            : IconButton(
+                icon: const Icon(Icons.arrow_back_ios),
+                onPressed: () {
+                  if (currentIndex != 0) {
+                    _controller.previousPage(
+                      duration: const Duration(milliseconds: 100),
+                      curve: Curves.linear,
+                    );
+                  }
+                },
+              ),
         backgroundColor: Colors.white,
       ),
       body: Column(
         children: [
           Expanded(
             child: PageView.builder(
+              physics: const NeverScrollableScrollPhysics(),
               controller: _controller,
               itemCount: contents.length,
               onPageChanged: (int index) {
@@ -66,35 +79,36 @@ class _OnbordingScreenState extends State<OnbordingScreen> {
             width: double.infinity,
             child: TextButton(
               onPressed: () async {
-                // ---------Last page logic------------
+                if (!contents[currentIndex][1]()) {
+                  Fluttertoast.showToast(
+                    msg: "provide input",
+                    gravity: ToastGravity.TOP,
+                    timeInSecForIosWeb: 1,
+                    backgroundColor: Colors.grey,
+                    textColor: const Color.fromARGB(255, 33, 33, 33),
+                    fontSize: 12.0,
+                  );
+                  return;
+                }
 
-                if (currentIndex == contents.length - 1)  {
-                    prefs = await SharedPreferences.getInstance();
-                    prefs.setBool('hasSeen', true);
-                    
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => const HomePage(),
+                // ---------Last page logic------------
+                if (currentIndex == contents.length - 1) {
+                  prefs = await SharedPreferences.getInstance();
+                  prefs.setBool('hasSeen', true);
+
+                  Navigator.pushReplacement(
+                    // ignore: use_build_context_synchronously
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => const HomePage(),
                     ),
                   );
                 }
 
-                if (!contents[currentIndex][1]()) {
-                  Fluttertoast.showToast(
-                      msg: "provide input",
-                      gravity: ToastGravity.TOP,
-                      timeInSecForIosWeb: 1,
-                      backgroundColor: Colors.grey,
-                      textColor: const Color.fromARGB(255, 33, 33, 33),
-                      fontSize: 12.0,
-                    );
-                } else {
-                  _controller.nextPage(
-                    duration: const Duration(milliseconds: 100),
-                    curve: Curves.linear,
-                  );
-                }
+                _controller.nextPage(
+                  duration: const Duration(milliseconds: 100),
+                  curve: Curves.linear,
+                );
               },
               style: TextButton.styleFrom(
                 backgroundColor: primaryColor,
