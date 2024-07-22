@@ -25,12 +25,12 @@ class DietInputScreen extends StatelessWidget {
       ),
       body: Column(
         children: [
-          SizedBox(
-            height: getProportionateScreenHeight(650),
-          ),
+          Expanded(child: Container()),
           Container(
-            margin: EdgeInsets.symmetric(
-              horizontal: getProportionateScreenWidth(12),
+            margin: EdgeInsets.only(
+              left: getProportionateScreenWidth(12),
+              right: getProportionateScreenWidth(12),
+              bottom: getProportionateScreenHeight(17),
             ),
             padding: EdgeInsets.all(getProportionateScreenHeight(8)),
             decoration: BoxDecoration(

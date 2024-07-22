@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:external_path/external_path.dart';
 import 'package:fitness_app/constants.dart';
+import 'package:fitness_app/screens/nutrition/image_macros_output.dart';
 import 'package:fitness_app/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:media_scanner/media_scanner.dart';
@@ -44,25 +45,23 @@ class _CameraScreenState extends State<CameraScreen> {
       return;
     }
 
-    // if (isFlashOn == false) {
-    //   await cameraController.setFlashMode(FlashMode.off);
-    // } else {
-    //   await cameraController.setFlashMode(FlashMode.torch);
-    // }
-    // if (cameraController.value.flashMode == FlashMode.torch) {
-    //   setState(() {
-    //     cameraController.setFlashMode(FlashMode.off);
-    //   });
-    // }
-
     image = await cameraController.takePicture();
 
     final file = await saveImage(image);
     setState(() {
       pickedImage = file;
     });
-    MediaScanner.loadMedia(path: file.path);
 
+    // MediaScanner.loadMedia(path: file.path);
+
+    Navigator.push(
+      // ignore: use_build_context_synchronously
+      context,
+      MaterialPageRoute(
+        builder: (context) => ImageMacrosOutput(imageFile: pickedImage),
+      ),
+    );
+    
   }
 
   void startCamera(int cameraIndex) {
@@ -118,7 +117,8 @@ class _CameraScreenState extends State<CameraScreen> {
               // mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Container(
-                  margin: EdgeInsets.only(left: getProportionateScreenWidth(36)),
+                  margin:
+                      EdgeInsets.only(left: getProportionateScreenWidth(36)),
                   child: Text(
                     "-",
                     style: TextStyle(
@@ -155,6 +155,7 @@ class _CameraScreenState extends State<CameraScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 FloatingActionButton(
+                  heroTag: 'btn2',
                   backgroundColor: Colors.red,
                   shape: const CircleBorder(),
                   onPressed: () {
@@ -169,10 +170,11 @@ class _CameraScreenState extends State<CameraScreen> {
                   ),
                 ),
                 FloatingActionButton(
+                  heroTag: 'btn1',
                   backgroundColor: primaryColor,
                   shape: const CircleBorder(),
                   onPressed: takePicture,
-                  child:  Icon(
+                  child: Icon(
                     Icons.add,
                     size: getProportionateScreenHeight(40),
                     color: Colors.white,
@@ -209,15 +211,18 @@ class _CameraScreenState extends State<CameraScreen> {
             },
           ),
 
-           Positioned(
+          Positioned(
             top: getProportionateScreenHeight(98),
             left: 0,
             right: 0,
             child: Container(
               height: getProportionateScreenHeight(30),
-              margin: EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(100)),
-              decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(10)),
-              padding: EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(15)),
+              margin: EdgeInsets.symmetric(
+                  horizontal: getProportionateScreenWidth(100)),
+              decoration: BoxDecoration(
+                  color: Colors.white, borderRadius: BorderRadius.circular(10)),
+              padding: EdgeInsets.symmetric(
+                  horizontal: getProportionateScreenWidth(15)),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -248,9 +253,8 @@ class _CameraScreenState extends State<CameraScreen> {
             ),
           ),
 
-
-          //scanner like square 
-           Center(
+          //scanner like square
+          Center(
             child: Container(
               width: size.width * 0.8,
               height: size.width * 0.8,

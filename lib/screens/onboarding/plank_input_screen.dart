@@ -22,8 +22,8 @@ class _PlankInputScreenState extends State<PlankInputScreen> {
 
   void selectItem(int index) {
     setState(() {
-      OnboardingDataModel.planChoice = index;
       selectedIndex = index;
+      OnboardingDataModel.plankChoice = selectedIndex;
     });
   }
 

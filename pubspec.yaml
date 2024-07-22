@@ -44,6 +44,8 @@ dependencies:
   gap: ^3.0.1
   external_path: ^1.0.3
   media_scanner: ^2.1.0
+  shimmer: ^3.0.0
+  google_generative_ai: ^0.4.3
 
 dev_dependencies:
   flutter_test:
