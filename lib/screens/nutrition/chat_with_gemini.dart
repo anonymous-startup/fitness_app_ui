@@ -77,15 +77,15 @@ class _ChatWithGeminiState extends State<ChatWithGemini> {
                     height: getProportionateScreenHeight(30),
                   ),
                   const Meal(
-                    meadTime: 'Breakfast',
+                    mealTime: 'Breakfast',
                     meal: 'Sunny Side Egg',
                   ),
                   const Meal(
-                    meadTime: 'Lunch',
+                    mealTime: 'Lunch',
                     meal: 'Sunny Side Egg',
                   ),
                   const Meal(
-                    meadTime: 'Dinner',
+                    mealTime: 'Dinner',
                     meal: 'Sunny Side Egg',
                   ),
                 ],
@@ -114,11 +114,11 @@ class _ChatWithGeminiState extends State<ChatWithGemini> {
 }
 
 class Meal extends StatelessWidget {
-  final String meadTime;
+  final String mealTime;
   final String meal;
 
   const Meal({
-    required this.meadTime,
+    required this.mealTime,
     required this.meal,
     super.key,
   });
@@ -129,7 +129,7 @@ class Meal extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          '$meadTime: ',
+          '$mealTime: ',
           style: const TextStyle(
             fontWeight: FontWeight.bold,
           ),

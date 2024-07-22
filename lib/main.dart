@@ -1,5 +1,7 @@
 import 'package:fitness_app/constants.dart';
 import 'package:fitness_app/providers/onboarding/birthday_provider.dart';
+import 'package:fitness_app/screens/nutrition/diet_input_screen.dart';
+import 'package:fitness_app/screens/home/home_page.dart';
 import 'package:fitness_app/screens/nutrition/chat_with_gemini.dart';
 import 'package:fitness_app/screens/nutrition/diet_input_screen.dart';
 import 'package:fitness_app/screens/onboarding/onboarding_screen.dart';
@@ -39,7 +41,7 @@ class MyApp extends StatelessWidget {
           primaryColor: primaryColor,
           fontFamily: 'Poppins',
         ),
-        home: hasSeen ? const ChatWithGemini() : const OnbordingScreen(),
+        home: hasSeen ? const DietInputScreen() : const OnbordingScreen(),
         routes: {
           DietInputScreen.routeName: (ctx) => const DietInputScreen(),
           OnbordingScreen.routeName: (ctx) => const OnbordingScreen(),
