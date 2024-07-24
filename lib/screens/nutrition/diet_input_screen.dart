@@ -32,7 +32,7 @@ class DietInputScreen extends StatelessWidget {
               right: getProportionateScreenWidth(12),
               bottom: getProportionateScreenHeight(17),
             ),
-            padding: EdgeInsets.all(getProportionateScreenHeight(8)),
+            padding: EdgeInsets.all(getProportionateScreenHeight(12)),
             decoration: BoxDecoration(
               color: primaryColor,
               borderRadius: BorderRadius.circular(10),
@@ -54,7 +54,7 @@ class DietInputScreen extends StatelessWidget {
                     color: primaryTextColor,
                     fontWeight: FontWeight.bold,
                     fontSize: getProportionateScreenHeight(16),
-                  ),
+                  )
                 ),
               ),
             ),
