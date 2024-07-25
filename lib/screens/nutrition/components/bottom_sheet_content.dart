@@ -50,7 +50,7 @@ class BottomSheetContent extends StatelessWidget {
                 },
                 child: const Center(
                   child: Text(
-                    'Add Maually',
+                    'Maually',
                     style: TextStyle(color: primaryColor),
                   ),
                 ),
@@ -78,7 +78,7 @@ class BottomSheetContent extends StatelessWidget {
                 },
                 child: const Center(
                   child: Text(
-                    'Add Automcatically',
+                    'Automcatically',
                     style: TextStyle(color: primaryColor),
                   ),
                 ),

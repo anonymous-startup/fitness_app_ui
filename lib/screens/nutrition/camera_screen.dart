@@ -61,7 +61,6 @@ class _CameraScreenState extends State<CameraScreen> {
         builder: (context) => ImageMacrosOutput(imageFile: pickedImage),
       ),
     );
-    
   }
 
   void startCamera(int cameraIndex) {
@@ -231,7 +230,7 @@ class _CameraScreenState extends State<CameraScreen> {
                     icon: Icon(
                       size: getProportionateScreenHeight(23),
                       isFlashOn ? Icons.flash_off : Icons.flash_on,
-                      color: Colors.purple,
+                      color: primaryColor,
                     ),
                     onPressed: toggleFlash,
                   ),
@@ -239,7 +238,7 @@ class _CameraScreenState extends State<CameraScreen> {
                     icon: Icon(
                       size: getProportionateScreenHeight(20),
                       isRearCamera ? Icons.camera_rear : Icons.camera_front,
-                      color: Colors.purple,
+                      color: primaryColor,
                     ),
                     onPressed: () {
                       setState(() {
@@ -264,9 +263,15 @@ class _CameraScreenState extends State<CameraScreen> {
                     top: 0,
                     left: 0,
                     child: Container(
-                      width: 40,
+                      width: 50,
                       height: 8,
-                      color: Colors.purple,
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(8),
+                          topRight: Radius.circular(8),
+                        ),
+                      ),
                     ),
                   ),
                   Positioned(
@@ -274,17 +279,29 @@ class _CameraScreenState extends State<CameraScreen> {
                     left: 0,
                     child: Container(
                       width: 8,
-                      height: 40,
-                      color: Colors.purple,
+                      height: 50,
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(8),
+                          bottomLeft: Radius.circular(8),
+                        ),
+                      ),
                     ),
                   ),
                   Positioned(
                     top: 0,
                     right: 0,
                     child: Container(
-                      width: 40,
+                      width: 50,
                       height: 8,
-                      color: Colors.purple,
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(8),
+                          topLeft: Radius.circular(8),
+                        ),
+                      ),
                     ),
                   ),
                   Positioned(
@@ -292,17 +309,29 @@ class _CameraScreenState extends State<CameraScreen> {
                     right: 0,
                     child: Container(
                       width: 8,
-                      height: 40,
-                      color: Colors.purple,
+                      height: 50,
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(8),
+                          bottomRight: Radius.circular(8),
+                        ),
+                      ),
                     ),
                   ),
                   Positioned(
                     bottom: 0,
                     left: 0,
                     child: Container(
-                      width: 40,
+                      width: 50,
                       height: 8,
-                      color: Colors.purple,
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(8),
+                          bottomRight: Radius.circular(8),
+                        ),
+                      ),
                     ),
                   ),
                   Positioned(
@@ -310,17 +339,29 @@ class _CameraScreenState extends State<CameraScreen> {
                     left: 0,
                     child: Container(
                       width: 8,
-                      height: 40,
-                      color: Colors.purple,
+                      height: 50,
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(8),
+                          topLeft: Radius.circular(8),
+                        ),
+                      ),
                     ),
                   ),
                   Positioned(
                     bottom: 0,
                     right: 0,
                     child: Container(
-                      width: 40,
+                      width: 50,
                       height: 8,
-                      color: Colors.purple,
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                          bottomRight: Radius.circular(8),
+                          bottomLeft: Radius.circular(8),
+                        ),
+                      ),
                     ),
                   ),
                   Positioned(
@@ -328,8 +369,14 @@ class _CameraScreenState extends State<CameraScreen> {
                     right: 0,
                     child: Container(
                       width: 8,
-                      height: 40,
-                      color: Colors.purple,
+                      height: 50,
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                          bottomRight: Radius.circular(8),
+                          topRight: Radius.circular(8),
+                        ),
+                      ),
                     ),
                   ),
                 ],

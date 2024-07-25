@@ -1,4 +1,4 @@
-import 'package:fitness_app/constants.dart';
+// import 'package:fitness_app/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -15,8 +15,8 @@ class ShimmerContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
-      baseColor: primaryLightColor,
-      highlightColor: secondaryLightColor,
+      baseColor: Color.fromARGB(255, 201, 198, 198), // Base color is grey
+      highlightColor: Colors.white,
       child: Container(
         padding: const EdgeInsets.all(10),
         height: height,
