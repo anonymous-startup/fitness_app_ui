@@ -1,5 +1,6 @@
 import 'package:fitness_app/constants.dart';
 import 'package:fitness_app/screens/home/home_page.dart';
+import 'package:fitness_app/screens/nutrition/diet_input_screen.dart';
 import 'package:fitness_app/screens/onboarding/models/onboarding_model.dart';
 import 'package:fitness_app/size_config.dart';
 import 'package:flutter/material.dart';
@@ -100,7 +101,7 @@ class _OnbordingScreenState extends State<OnbordingScreen> {
                     // ignore: use_build_context_synchronously
                     context,
                     MaterialPageRoute(
-                      builder: (_) => const HomePage(),
+                      builder: (_) => const DietInputScreen(),
                     ),
                   );
                 }

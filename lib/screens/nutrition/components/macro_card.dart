@@ -16,8 +16,8 @@ class MacroCard extends StatelessWidget {
         color: Colors.white, // Background color of grid item
         borderRadius: BorderRadius.circular(15), // Rounded corners
       ),
-      margin: EdgeInsets.all(getProportionateScreenHeight(10)),
-      padding: EdgeInsets.all(getProportionateScreenHeight(7)),
+       margin: EdgeInsets.only(bottom: getProportionateScreenHeight(13),right: getProportionateScreenWidth(8),left: getProportionateScreenWidth(8),),
+      padding: EdgeInsets.all(getProportionateScreenHeight(6)),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -37,8 +37,9 @@ class MacroCard extends StatelessWidget {
           Text(
             macroQuantity,
             style: TextStyle(
+              fontFamily: "poppins",
               color: primaryColor,
-              fontSize: getProportionateScreenHeight(24),
+              fontSize: getProportionateScreenHeight(22),
               fontWeight: FontWeight.bold,
             ),
              softWrap: true,
