@@ -14,7 +14,7 @@ class DishCard extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(
-          getProportionateScreenHeight(15),
+          getProportionateScreenHeight(15), 
         ),
         color: Colors.white,
       ),
