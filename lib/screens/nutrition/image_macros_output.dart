@@ -24,18 +24,27 @@ class _ImageMacrosOutputState extends State<ImageMacrosOutput> {
 
   Future<Map<String, dynamic>> callGemini() async {
     Map<String, dynamic> res = {};
-    res = await Gemini.getMacrosFromImage(imagePrompt1, widget.imageFile);
+    // res = await Gemini.getMacrosFromImage(imagePrompt1, widget.imageFile);
 
-    //testing lottie widget
+    // testing lottie widget
     // res = {
     //   "name": 'not found',
     // };
 
     //testing gemini output widget
-    // res = { "name": 'Masala Dosa', "calories": '221cal', "protein": '8g', "fat": '43g', "carbs": '1.3g', };
-    
+    res = {
+      "name": 'Masala Dosa',
+      "calories": '221cal',
+      "protein": '8g',
+      "fat": '43g',
+      "carbs": '1.3g',
+    };
+
     return res;
   }
+
+  //implementation of meal adding
+  void addMeal() {}
 
   final width = SizeConfig.screenWidth;
   final height = SizeConfig.screenHeight;
@@ -206,25 +215,28 @@ class _ImageMacrosOutputState extends State<ImageMacrosOutput> {
                                       ),
                                     ),
                                     SizedBox(
-                                      height: getProportionateScreenHeight(240),
+                                      height: getProportionateScreenHeight(250),
                                       child: GridView.builder(
                                         itemCount: macros.length,
                                         gridDelegate:
                                             SliverGridDelegateWithFixedCrossAxisCount(
                                           crossAxisCount: 2,
                                           // crossAxisSpacing: getProportionateScreenWidth(10),
-                                          // mainAxisSpacing: getProportionateScreenHeight(20),
+                                          mainAxisSpacing: getProportionateScreenHeight(15),
                                           childAspectRatio:
-                                              getProportionateScreenWidth(70) /
+                                              getProportionateScreenWidth(80) /
                                                   getProportionateScreenHeight(
                                                       40),
                                         ),
                                         itemBuilder: (context, index) {
                                           return MacroCard(
-                                              macroName: macros[index],
-                                              macroQuantity:
-                                                  geminiMap[macros[index]]
-                                                      .toString());
+                                            macroName: macros[index],
+                                            macroQuantity:
+                                                geminiMap[macros[index]]
+                                                    .toString(),
+                                            leftMargin: (index % 2 == 0) ? getProportionateScreenWidth(14) : getProportionateScreenWidth(7),
+                                            rightMargin: (index % 2 == 0) ? getProportionateScreenWidth(7): getProportionateScreenWidth(14),
+                                          );
                                         },
                                       ),
                                     ),
@@ -232,52 +244,53 @@ class _ImageMacrosOutputState extends State<ImageMacrosOutput> {
                                 ),
                               )
                             : MealNotFound(),
+                        // Expanded(child: Container()),
+                        Container(
+                          margin: EdgeInsets.only(
+                            left: getProportionateScreenWidth(12),
+                            top: getProportionateScreenHeight(23),
+                            right: getProportionateScreenWidth(12),
+                            bottom: getProportionateScreenHeight(17),
+                          ),
+                          padding:
+                              EdgeInsets.all(getProportionateScreenHeight(10)),
+                          decoration: BoxDecoration(
+                            color: (!geminiMap.containsKey('name') ||
+                                    geminiMap["name"] == "not found")
+                                ? Colors.grey
+                                : primaryColor,
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black
+                                    .withOpacity(0.2), // shadow color
+                                spreadRadius: 0, // spread radius
+                                blurRadius: 10, // blur radius
+                                offset: const Offset(
+                                    0, 10), // changes position of shadow
+                              ),
+                            ],
+                          ),
+                          child: InkWell(
+                            onTap: addMeal,
+                            child: Center(
+                              child: Text(
+                                "Add",
+                                style: TextStyle(
+                                  color: primaryTextColor,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: getProportionateScreenHeight(16),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
                       ],
                     );
                   }
 
                   return const LoadingContainer();
                 },
-              ),
-              Expanded(child: Container()),
-              Container(
-                margin: EdgeInsets.only(
-                  left: getProportionateScreenWidth(12),
-                  right: getProportionateScreenWidth(12),
-                  bottom: getProportionateScreenHeight(17),
-                ),
-                padding: EdgeInsets.all(getProportionateScreenHeight(10)),
-                decoration: BoxDecoration(
-                  color: (!geminiMap.containsKey('name') ||
-                          geminiMap["name"] == "not found")
-                      ? Colors.white
-                      : primaryColor,
-                  borderRadius: BorderRadius.circular(10),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.2), // shadow color
-                      spreadRadius: 0, // spread radius
-                      blurRadius: 10, // blur radius
-                      offset: const Offset(0, 10), // changes position of shadow
-                    ),
-                  ],
-                ),
-                child: (!geminiMap.containsKey('name') ||
-                        geminiMap["name"] == "not found")
-                    ? Container()
-                    : InkWell(
-                        onTap: () async {},
-                        child: Center(
-                          child: Text(
-                            "Add",
-                            style: TextStyle(
-                              color: primaryTextColor,
-                              fontWeight: FontWeight.bold,
-                              fontSize: getProportionateScreenHeight(16),
-                            ),
-                          ),
-                        ),
-                      ),
               ),
             ],
           ),

@@ -4,9 +4,11 @@ import 'package:flutter/material.dart';
 
 class MacroCard extends StatelessWidget {
   const MacroCard(
-      {super.key, required this.macroName, required this.macroQuantity});
+      {super.key, required this.macroName, required this.macroQuantity,required this.leftMargin,required this.rightMargin});
   final String macroName;
   final String macroQuantity;
+  final double leftMargin;
+  final double rightMargin;
 
   @override
   Widget build(BuildContext context) {
@@ -14,9 +16,9 @@ class MacroCard extends StatelessWidget {
       // height: getProportionateScreenHeight(100),
       decoration: BoxDecoration(
         color: Colors.white, // Background color of grid item
-        borderRadius: BorderRadius.circular(15), // Rounded corners
+        borderRadius: BorderRadius.circular(13), // Rounded corners
       ),
-       margin: EdgeInsets.only(bottom: getProportionateScreenHeight(13),right: getProportionateScreenWidth(8),left: getProportionateScreenWidth(8),),
+       margin: EdgeInsets.only(right: rightMargin,left: leftMargin,),
       padding: EdgeInsets.all(getProportionateScreenHeight(6)),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -39,7 +41,7 @@ class MacroCard extends StatelessWidget {
             style: TextStyle(
               fontFamily: "poppins",
               color: primaryColor,
-              fontSize: getProportionateScreenHeight(22),
+              fontSize: getProportionateScreenHeight(21),
               fontWeight: FontWeight.bold,
             ),
              softWrap: true,
