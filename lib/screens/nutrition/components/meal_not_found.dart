@@ -25,7 +25,7 @@ class _MealNotFoundState extends State<MealNotFound> with SingleTickerProviderSt
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: getProportionateScreenHeight(350),
+      height: getProportionateScreenHeight(317),
       alignment: Alignment.center,
       child: Lottie.asset(
         'assets/lottie/meal_not_found.json',
