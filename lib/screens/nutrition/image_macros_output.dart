@@ -31,9 +31,9 @@ class _ImageMacrosOutputState extends State<ImageMacrosOutput> {
     //   "name": 'not found',
     // };
 
-    //testing gemini output widget
+    // testing gemini output widget
     // res = {
-    //   "name": 'Masala Dosa',
+    //   "name": 'Masala Dosa abldab ',
     //   "calories": '221cal',
     //   "protein": '8g',
     //   "fat": '43g',
@@ -44,9 +44,7 @@ class _ImageMacrosOutputState extends State<ImageMacrosOutput> {
   }
 
   //implementation of meal adding
-  void addMeal() {
-    
-  }
+  void addMeal() {}
 
   final width = SizeConfig.screenWidth;
   final height = SizeConfig.screenHeight;
@@ -97,6 +95,9 @@ class _ImageMacrosOutputState extends State<ImageMacrosOutput> {
                           padding: EdgeInsets.symmetric(
                               horizontal: getProportionateScreenWidth(20)),
                           child: RichText(
+
+                            overflow: (!geminiMap.containsKey('name') ||
+                                            geminiMap["name"] == "not found") ? TextOverflow.visible: TextOverflow.ellipsis ,
                             text: TextSpan(
                               children: [
                                 TextSpan(
@@ -111,7 +112,7 @@ class _ImageMacrosOutputState extends State<ImageMacrosOutput> {
                                     fontSize: (!geminiMap.containsKey('name') ||
                                             geminiMap["name"] == "not found")
                                         ? getProportionateScreenHeight(28)
-                                        : getProportionateScreenHeight(32),
+                                        : getProportionateScreenHeight(30),
                                   ),
                                 ),
                                 TextSpan(
@@ -126,7 +127,10 @@ class _ImageMacrosOutputState extends State<ImageMacrosOutput> {
                                     fontFamily: 'poppins',
                                     fontWeight: FontWeight.bold,
                                     color: Colors.black,
-                                    fontSize: getProportionateScreenHeight(32),
+                                    fontSize: (!geminiMap.containsKey('name') ||
+                                            geminiMap["name"] == "not found")
+                                        ? getProportionateScreenHeight(28)
+                                        : getProportionateScreenHeight(28),
                                   ),
                                 ),
                               ],
@@ -164,7 +168,7 @@ class _ImageMacrosOutputState extends State<ImageMacrosOutput> {
                                   left: getProportionateScreenWidth(18),
                                   right: getProportionateScreenWidth(18),
                                 ),
-                                height: getProportionateScreenHeight(320),
+                                height: getProportionateScreenHeight(310),
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
@@ -217,14 +221,15 @@ class _ImageMacrosOutputState extends State<ImageMacrosOutput> {
                                       ),
                                     ),
                                     SizedBox(
-                                      height: getProportionateScreenHeight(250),
+                                      height: getProportionateScreenHeight(240),
                                       child: GridView.builder(
                                         itemCount: macros.length,
                                         gridDelegate:
                                             SliverGridDelegateWithFixedCrossAxisCount(
                                           crossAxisCount: 2,
                                           // crossAxisSpacing: getProportionateScreenWidth(10),
-                                          mainAxisSpacing: getProportionateScreenHeight(15),
+                                          mainAxisSpacing:
+                                              getProportionateScreenHeight(15),
                                           childAspectRatio:
                                               getProportionateScreenWidth(80) /
                                                   getProportionateScreenHeight(
@@ -236,8 +241,15 @@ class _ImageMacrosOutputState extends State<ImageMacrosOutput> {
                                             macroQuantity:
                                                 geminiMap[macros[index]]
                                                     .toString(),
-                                            leftMargin: (index % 2 == 0) ? getProportionateScreenWidth(14) : getProportionateScreenWidth(7),
-                                            rightMargin: (index % 2 == 0) ? getProportionateScreenWidth(7): getProportionateScreenWidth(14),
+                                            leftMargin: (index % 2 == 0)
+                                                ? getProportionateScreenWidth(
+                                                    14)
+                                                : getProportionateScreenWidth(
+                                                    7),
+                                            rightMargin: (index % 2 == 0)
+                                                ? getProportionateScreenWidth(7)
+                                                : getProportionateScreenWidth(
+                                                    14),
                                           );
                                         },
                                       ),
@@ -249,9 +261,9 @@ class _ImageMacrosOutputState extends State<ImageMacrosOutput> {
                         // Expanded(child: Container()),
                         Container(
                           margin: EdgeInsets.only(
-                            left: getProportionateScreenWidth(12),
-                            top: getProportionateScreenHeight(23),
-                            right: getProportionateScreenWidth(12),
+                            left: getProportionateScreenWidth(14),
+                            top: getProportionateScreenHeight(28),
+                            right: getProportionateScreenWidth(14),
                             bottom: getProportionateScreenHeight(17),
                           ),
                           padding:
