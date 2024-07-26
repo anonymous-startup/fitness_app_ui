@@ -24,7 +24,7 @@ class _ImageMacrosOutputState extends State<ImageMacrosOutput> {
 
   Future<Map<String, dynamic>> callGemini() async {
     Map<String, dynamic> res = {};
-    // res = await Gemini.getMacrosFromImage(imagePrompt1, widget.imageFile);
+    res = await Gemini.getMacrosFromImage(imagePrompt1, widget.imageFile);
 
     // testing lottie widget
     // res = {
@@ -32,19 +32,21 @@ class _ImageMacrosOutputState extends State<ImageMacrosOutput> {
     // };
 
     //testing gemini output widget
-    res = {
-      "name": 'Masala Dosa',
-      "calories": '221cal',
-      "protein": '8g',
-      "fat": '43g',
-      "carbs": '1.3g',
-    };
+    // res = {
+    //   "name": 'Masala Dosa',
+    //   "calories": '221cal',
+    //   "protein": '8g',
+    //   "fat": '43g',
+    //   "carbs": '1.3g',
+    // };
 
     return res;
   }
 
   //implementation of meal adding
-  void addMeal() {}
+  void addMeal() {
+    
+  }
 
   final width = SizeConfig.screenWidth;
   final height = SizeConfig.screenHeight;
