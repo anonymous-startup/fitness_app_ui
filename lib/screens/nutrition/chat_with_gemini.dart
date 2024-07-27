@@ -76,15 +76,15 @@ class _ChatWithGeminiState extends State<ChatWithGemini> {
                   SizedBox(
                     height: getProportionateScreenHeight(30),
                   ),
-                  const Meal(
+                  const MealInfo(
                     mealTime: 'Breakfast',
                     meal: 'Sunny Side Egg',
                   ),
-                  const Meal(
+                  const MealInfo(
                     mealTime: 'Lunch',
                     meal: 'Sunny Side Egg',
                   ),
-                  const Meal(
+                  const MealInfo(
                     mealTime: 'Dinner',
                     meal: 'Sunny Side Egg',
                   ),
@@ -113,11 +113,11 @@ class _ChatWithGeminiState extends State<ChatWithGemini> {
   }
 }
 
-class Meal extends StatelessWidget {
+class MealInfo extends StatelessWidget {
   final String mealTime;
   final String meal;
 
-  const Meal({
+  const MealInfo({
     required this.mealTime,
     required this.meal,
     super.key,

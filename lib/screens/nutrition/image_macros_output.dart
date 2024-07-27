@@ -1,12 +1,16 @@
 import 'dart:io';
-
 import 'package:fitness_app/constants.dart';
+import 'package:fitness_app/providers/nutrition/day_meal_intake_provider.dart';
 import 'package:fitness_app/screens/nutrition/components/macro_card.dart';
 import 'package:fitness_app/screens/nutrition/components/meal_not_found.dart';
+import 'package:fitness_app/screens/nutrition/diet_input_screen.dart';
+import 'package:fitness_app/screens/nutrition/helper/meal.dart';
 import 'package:fitness_app/screens/nutrition/components/shimmer_container.dart';
 import 'package:fitness_app/screens/nutrition/models/gemini_model.dart';
 import 'package:fitness_app/size_config.dart';
+import 'package:fitness_app/utility/string_methods.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ImageMacrosOutput extends StatefulWidget {
   const ImageMacrosOutput({super.key, required this.imageFile});
@@ -43,8 +47,22 @@ class _ImageMacrosOutputState extends State<ImageMacrosOutput> {
     return res;
   }
 
-  //implementation of meal adding
-  void addMeal() {}
+  Meal meal = Meal();
+
+  void addMeal() {
+    // print('----------------');
+    // print(meal.name);
+    // print(meal.calories);
+    // print(meal.carbs);
+    // print(meal.fats);
+    // print(meal.protein);
+    // print('----------------');
+    if (meal.name.isNotEmpty) {
+      Provider.of<DayMealIntakeProvider>(context, listen: false).addMeal(meal);
+    }
+
+    Navigator.pushReplacementNamed(context, DietInputScreen.routeName);
+  }
 
   final width = SizeConfig.screenWidth;
   final height = SizeConfig.screenHeight;
@@ -86,6 +104,11 @@ class _ImageMacrosOutputState extends State<ImageMacrosOutput> {
                     geminiMap = snapshot.data!;
                     List macros =
                         geminiMap.keys.where((key) => key != 'name').toList();
+
+                    meal.name = capitalizeEachWord(
+                      geminiMap.containsKey('name') ? geminiMap['name'] : "",
+                    );
+
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -95,9 +118,10 @@ class _ImageMacrosOutputState extends State<ImageMacrosOutput> {
                           padding: EdgeInsets.symmetric(
                               horizontal: getProportionateScreenWidth(20)),
                           child: RichText(
-
                             overflow: (!geminiMap.containsKey('name') ||
-                                            geminiMap["name"] == "not found") ? TextOverflow.visible: TextOverflow.ellipsis ,
+                                    geminiMap["name"] == "not found")
+                                ? TextOverflow.visible
+                                : TextOverflow.ellipsis,
                             text: TextSpan(
                               children: [
                                 TextSpan(
@@ -192,18 +216,22 @@ class _ImageMacrosOutputState extends State<ImageMacrosOutput> {
                                               "assets/images/nutrition/ai.png",
                                               width:
                                                   getProportionateScreenWidth(
-                                                      50),
+                                                50,
+                                              ),
                                               height:
                                                   getProportionateScreenHeight(
-                                                      50),
+                                                50,
+                                              ),
                                             ),
                                           ),
                                           Container(
                                             margin: EdgeInsets.only(
                                               top: getProportionateScreenHeight(
-                                                  22),
+                                                22,
+                                              ),
                                               left: getProportionateScreenWidth(
-                                                  10),
+                                                10,
+                                              ),
                                             ),
                                             child: Text(
                                               "Fobot says......",
@@ -236,11 +264,38 @@ class _ImageMacrosOutputState extends State<ImageMacrosOutput> {
                                                       40),
                                         ),
                                         itemBuilder: (context, index) {
+                                          String macro = macros[index];
+
+                                          if (macro == "protein") {
+                                            meal.protein = double.parse(
+                                              extractNumberFromString(
+                                                geminiMap[macro],
+                                              ),
+                                            );
+                                          } else if (macro == "carbs") {
+                                            meal.carbs = double.parse(
+                                              extractNumberFromString(
+                                                geminiMap[macro],
+                                              ),
+                                            );
+                                          } else if (macro == "calories") {
+                                            meal.calories = double.parse(
+                                              extractNumberFromString(
+                                                geminiMap[macro],
+                                              ),
+                                            );
+                                          } else if (macro == "fat") {
+                                            meal.fats = double.parse(
+                                              extractNumberFromString(
+                                                geminiMap[macro],
+                                              ),
+                                            );
+                                          }
+
                                           return MacroCard(
-                                            macroName: macros[index],
+                                            macroName: capitalizeEachWord(macro),
                                             macroQuantity:
-                                                geminiMap[macros[index]]
-                                                    .toString(),
+                                                geminiMap[macro].toString(),
                                             leftMargin: (index % 2 == 0)
                                                 ? getProportionateScreenWidth(
                                                     14)
