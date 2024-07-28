@@ -1,5 +1,7 @@
 import 'package:fitness_app/constants.dart';
+import 'package:fitness_app/providers/nutrition/day_meal_intake_provider.dart';
 import 'package:fitness_app/providers/onboarding/birthday_provider.dart';
+import 'package:fitness_app/screens/nutrition/chat_with_gemini.dart';
 import 'package:fitness_app/screens/nutrition/diet_input_screen.dart';
 
 import 'package:fitness_app/screens/onboarding/onboarding_screen.dart';
@@ -34,6 +36,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) => BirthdayProvider(),
         ),
+        ChangeNotifierProvider(
+          create: (context) => DayMealIntakeProvider(),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -45,6 +50,7 @@ class MyApp extends StatelessWidget {
         routes: {
           DietInputScreen.routeName: (ctx) => const DietInputScreen(),
           OnbordingScreen.routeName: (ctx) => const OnbordingScreen(),
+          ChatWithGemini.routeName: (ctx) => const ChatWithGemini(),
         },
       ),
     );

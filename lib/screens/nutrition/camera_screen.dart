@@ -6,11 +6,13 @@ import 'package:fitness_app/constants.dart';
 import 'package:fitness_app/screens/nutrition/image_macros_output.dart';
 import 'package:fitness_app/size_config.dart';
 import 'package:flutter/material.dart';
-import 'package:media_scanner/media_scanner.dart';
 
 class CameraScreen extends StatefulWidget {
   final List<CameraDescription> cameras;
-  const CameraScreen({Key? key, required this.cameras}) : super(key: key);
+  const CameraScreen({
+    super.key,
+    required this.cameras,
+  });
 
   @override
   State<CameraScreen> createState() => _CameraScreenState();
@@ -133,11 +135,14 @@ class _CameraScreenState extends State<CameraScreen> {
                     min: 1.0,
                     max: 5.0, // Adjust max zoom level as needed
                     onChanged: (value) {
-                      setState(() {
-                        zoomValue = value;
-                        setCameraZoom(
-                            zoomValue); // Set zoom level when slider changes
-                      });
+                      setState(
+                        () {
+                          zoomValue = value;
+                          setCameraZoom(
+                            zoomValue,
+                          ); // Set zoom level when slider changes
+                        },
+                      );
                     },
                   ),
                 ),
