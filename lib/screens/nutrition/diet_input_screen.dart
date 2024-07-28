@@ -1,4 +1,5 @@
 import 'package:fitness_app/constants.dart';
+import 'package:fitness_app/screens/nutrition/chat_with_gemini.dart';
 import 'package:fitness_app/screens/nutrition/components/bottom_sheet_content.dart';
 import 'package:fitness_app/size_config.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +26,17 @@ class DietInputScreen extends StatelessWidget {
       ),
       body: Column(
         children: [
-          Expanded(child: Container()),
+          Expanded(child: Container(
+            child: GestureDetector(
+              onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const ChatWithGemini())),
+              child: CircleAvatar(
+                  radius: getProportionateScreenHeight(50),
+                  backgroundImage: const NetworkImage(
+                    'https://www.licious.in/blog/wp-content/uploads/2023/01/Shutterstock_2047827035-1024x683.jpg',
+                  ),
+                ),
+            ),
+          )),
           Container(
             margin: EdgeInsets.only(
               left: getProportionateScreenWidth(12),

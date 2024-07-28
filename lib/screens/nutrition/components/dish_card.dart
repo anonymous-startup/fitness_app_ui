@@ -35,7 +35,7 @@ class DishCard extends StatelessWidget {
               CircleAvatar(
                 radius: getProportionateScreenHeight(50),
                 backgroundImage: const NetworkImage(
-                  'https://img.freepik.com/premium-photo/sexy-ass-lingerie-female-buttocks-slim-figure-bikini-thong_265223-99236.jpg?w=1800',
+                  'https://www.licious.in/blog/wp-content/uploads/2023/01/Shutterstock_2047827035-1024x683.jpg',
                 ),
               ),
               Text(dishName),

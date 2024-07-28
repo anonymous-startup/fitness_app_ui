@@ -1,18 +1,18 @@
 import 'package:fitness_app/constants.dart';
 import 'package:fitness_app/providers/onboarding/birthday_provider.dart';
 import 'package:fitness_app/screens/nutrition/diet_input_screen.dart';
-import 'package:fitness_app/screens/home/home_page.dart';
-import 'package:fitness_app/screens/nutrition/chat_with_gemini.dart';
-import 'package:fitness_app/screens/nutrition/diet_input_screen.dart';
+
 import 'package:fitness_app/screens/onboarding/onboarding_screen.dart';
 import 'package:fitness_app/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  await dotenv.load(fileName: ".env");
   final SharedPreferences prefs = await SharedPreferences.getInstance();
   bool hasSeen = prefs.getBool('hasSeen') ?? false;
 
