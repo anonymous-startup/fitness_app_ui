@@ -50,18 +50,14 @@ class _ImageMacrosOutputState extends State<ImageMacrosOutput> {
   Meal meal = Meal();
 
   void addMeal() {
-    // print('----------------');
-    // print(meal.name);
-    // print(meal.calories);
-    // print(meal.carbs);
-    // print(meal.fats);
-    // print(meal.protein);
-    // print('----------------');
     if (meal.name.isNotEmpty) {
       Provider.of<DayMealIntakeProvider>(context, listen: false).addMeal(meal);
     }
 
-    Navigator.pushReplacementNamed(context, DietInputScreen.routeName);
+    int count = 0;
+  Navigator.popUntil(context, (route) {
+    return count++ == 3; // Change 2 to the number of screens you want to pop
+  });
   }
 
   final width = SizeConfig.screenWidth;
@@ -106,9 +102,14 @@ class _ImageMacrosOutputState extends State<ImageMacrosOutput> {
                         geminiMap.keys.where((key) => key != 'name').toList();
 
                     meal.name = capitalizeEachWord(
-                      geminiMap.containsKey('name') ? geminiMap['name'] : "",
+                      geminiMap.containsKey('name')
+                          ? (geminiMap["name"] == "not found"
+                              ? ""
+                              : geminiMap['name'])
+                          : "",
                     );
 
+                    bool isMealInValid = meal.name.isEmpty;
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -118,43 +119,31 @@ class _ImageMacrosOutputState extends State<ImageMacrosOutput> {
                           padding: EdgeInsets.symmetric(
                               horizontal: getProportionateScreenWidth(20)),
                           child: RichText(
-                            overflow: (!geminiMap.containsKey('name') ||
-                                    geminiMap["name"] == "not found")
+                            overflow: isMealInValid
                                 ? TextOverflow.visible
                                 : TextOverflow.ellipsis,
                             text: TextSpan(
                               children: [
                                 TextSpan(
-                                  text: (!geminiMap.containsKey('name') ||
-                                          geminiMap["name"] == "not found")
-                                      ? "Oops! "
-                                      : 'Meal ',
+                                  text: isMealInValid ? "Oops! " : 'Meal ',
                                   style: TextStyle(
                                     fontFamily: 'poppins',
                                     fontWeight: FontWeight.bold,
                                     color: primaryColor,
-                                    fontSize: (!geminiMap.containsKey('name') ||
-                                            geminiMap["name"] == "not found")
+                                    fontSize: isMealInValid
                                         ? getProportionateScreenHeight(28)
                                         : getProportionateScreenHeight(30),
                                   ),
                                 ),
                                 TextSpan(
-                                  text: (!geminiMap.containsKey('name') ||
-                                          geminiMap["name"] == "not found")
+                                  text: isMealInValid
                                       ? "This is not a food item 🤔"
-                                      : geminiMap['name'],
-                                  // geminiMap.containsKey('name')
-                                  //     ? geminiMap['name']
-                                  //     : "Not found",
+                                      : meal.name,
                                   style: TextStyle(
                                     fontFamily: 'poppins',
                                     fontWeight: FontWeight.bold,
                                     color: Colors.black,
-                                    fontSize: (!geminiMap.containsKey('name') ||
-                                            geminiMap["name"] == "not found")
-                                        ? getProportionateScreenHeight(28)
-                                        : getProportionateScreenHeight(28),
+                                    fontSize: getProportionateScreenHeight(28),
                                   ),
                                 ),
                               ],
@@ -293,7 +282,8 @@ class _ImageMacrosOutputState extends State<ImageMacrosOutput> {
                                           }
 
                                           return MacroCard(
-                                            macroName: capitalizeEachWord(macro),
+                                            macroName:
+                                                capitalizeEachWord(macro),
                                             macroQuantity:
                                                 geminiMap[macro].toString(),
                                             leftMargin: (index % 2 == 0)
@@ -344,7 +334,7 @@ class _ImageMacrosOutputState extends State<ImageMacrosOutput> {
                             onTap: addMeal,
                             child: Center(
                               child: Text(
-                                "Add",
+                                isMealInValid ? "Go Back" : "Add",
                                 style: TextStyle(
                                   color: primaryTextColor,
                                   fontWeight: FontWeight.bold,

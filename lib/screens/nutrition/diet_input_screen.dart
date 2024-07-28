@@ -1,5 +1,4 @@
 import 'package:fitness_app/constants.dart';
-import 'package:fitness_app/providers/nutrition/day_meal_intake_provider.dart';
 import 'package:fitness_app/screens/nutrition/chat_with_gemini.dart';
 import 'package:fitness_app/screens/nutrition/components/bottom_sheet_content.dart';
 import 'package:fitness_app/screens/nutrition/helper/macro.dart';
@@ -8,6 +7,8 @@ import 'package:fitness_app/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
+
+import '../../providers/nutrition/day_meal_intake_provider.dart';
 
 class DietInputScreen extends StatelessWidget {
   const DietInputScreen({super.key});
@@ -35,6 +36,7 @@ class DietInputScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
       ),
+      floatingActionButton: FloatingActionButton(onPressed: ()=>Navigator.pushNamed(context,ChatWithGemini.routeName),child:   const Image(image: NetworkImage("https://www.thespruceeats.com/thmb/oIaxLSj0xxAbD39jykKk3XsFo9s=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/SES-chicken-biryani-recipe-7367850-hero-A-ed211926bb0e4ca1be510695c15ce111.jpg")),),
       body: Container(
         margin: EdgeInsets.all(
           getProportionateScreenWidth(15),
@@ -68,7 +70,10 @@ class DietInputScreen extends StatelessWidget {
                     ],
                   ),
                   Container(
+
+                    height: getProportionateScreenHeight(340),
                     decoration: BoxDecoration(
+
                       color: secondaryLightColor,
                       borderRadius: BorderRadius.circular(
                         getProportionateScreenHeight(15),
@@ -80,17 +85,17 @@ class DietInputScreen extends StatelessWidget {
                         isVisible: true,
                         iconHeight: getProportionateScreenHeight(30),
                       ),
-                      annotations: const <CircularChartAnnotation>[
-                        CircularChartAnnotation(
-                          widget: Text(
-                            '100%',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: primaryColor,
-                            ),
-                          ),
-                        ),
-                      ],
+                      // annotations: const <CircularChartAnnotation>[
+                      //   CircularChartAnnotation(
+                      //     widget: Text(
+                            
+                      //       style: TextStyle(
+                      //         fontWeight: FontWeight.bold,
+                      //         color: primaryColor,
+                      //       ),
+                      //     ),
+                      //   ),
+                      // ],
                       series: [
                         DoughnutSeries<Macro, String>(
                           dataSource: todayMacroValues,
@@ -121,30 +126,34 @@ class DietInputScreen extends StatelessWidget {
                   return InkWell(
                     onTap: () {},
                     child: Container(
+            
                       margin: EdgeInsets.only(
-                          bottom: getProportionateScreenHeight(30)),
+                          bottom: getProportionateScreenHeight(20 )),
                       decoration: BoxDecoration(
                         color: secondaryLightColor,
                         borderRadius: BorderRadius.circular(
                           getProportionateScreenHeight(30),
                         ),
                       ),
-                      height: getProportionateScreenHeight(70),
+                      height: getProportionateScreenHeight(55),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           Text(
                             meal.name,
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontWeight: FontWeight.bold,
                               color: primaryColor,
+                              fontSize: getProportionateScreenHeight(16),
                             ),
                           ),
+                         
                           Text(
                             "${meal.calories.toString()} cal",
-                            style: const TextStyle(
+                            style:  TextStyle(
                               fontWeight: FontWeight.bold,
                               color: primaryColor,
+                              fontSize: getProportionateScreenHeight(17)
                             ),
                           )
                         ],
